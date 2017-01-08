@@ -52,3 +52,34 @@ Option | Type | Description
         room_name: 'Bedroom',
         location_name: 'Home'
     }).then(console.log, console.error);
+
+## Comfort Mode
+
+    client.comfort_mode(settings, [cb])
+
+Option | Type | Description
+------ | ---- | -----------
+`settings` | Object | Object containing the attributes required by the underlying API: `room_name` and `location_name`
+`cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
+
+**Usage example:**
+
+    //Using callbacks
+    client.comfort_mode({
+            room_name: 'Bedroom',
+            location_name: 'Home'
+        },
+        function (err, data) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(data);
+        }
+    );
+
+    // Using promises
+    client.comfort_mode({
+        room_name: 'Bedroom',
+        location_name: 'Home'
+    }).then(console.log, console.error);

@@ -57,4 +57,18 @@ Client.prototype.off = function(settings, cb) {
     return deferred.promise.nodeify(cb);
 }
 
+Client.prototype.comfort_mode = function (settings, cb) {
+    var deferred = Q.defer();
+
+    this.send({
+        url: '/device/mode/comfort',
+        qs: settings
+    }, function(err, data) {
+        if (err) deferred.reject(err);
+        else deferred.resolve(data);
+    });
+
+    return deferred.promise.nodeify(cb);
+}
+
 module.exports = Client;
