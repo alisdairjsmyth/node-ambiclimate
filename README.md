@@ -187,3 +187,37 @@ Option | Type | Description
         location_name: 'Home',
         value: 22
     }).then(console.log, console.error);
+
+## Away Mode - Humidity Upper
+Enable Away mode on your AC to stay above target humidity
+
+    client.away_humidity_upper(settings, [cb])
+
+Option | Type | Description
+------ | ---- | -----------
+`settings` | Object | Object containing the attributes required by the underlying API: `room_name`, `location_name` and `value`.  Value represents the target relative humidity
+`cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
+
+**Usage example:**
+
+    //Using callbacks
+    client.away_humidity_upper({
+            room_name: 'Bedroom',
+            location_name: 'Home',
+            value: 70
+        },
+        function (err, data) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(data);
+        }
+    );
+
+    // Using promises
+    client.away_humidity_upper({
+        room_name: 'Bedroom',
+        location_name: 'Home',
+        value: 70
+    }).then(console.log, console.error);
