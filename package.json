@@ -1,0 +1,29 @@
+{
+  "name": "node-ambiclimate",
+  "version": "0.0.1",
+  "description": "Thin wrapper around the Ambi Climate HTTP API",
+  "author": {
+    "name": "Alisdair Smyth",
+    "email": "alisdair.smyth@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alisdairjsmyth/node-ambiclimate.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ambi+climate",
+    "air+conditioner"
+  ],
+  "main": "./ambi",
+  "dependencies": {
+    "lodash": "4.17.x",
+    "q": "1.4.x",
+    "request": "2.79.x"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/alisdairjsmyth/node-ambiclimate#readme",
+  "bugs": {
+    "url": "https://github.com/alisdairjsmyth/node-ambiclimate/issues"
+  }
+}
