@@ -93,7 +93,7 @@ Send feedback for Comfort mode
 
 Option | Type | Description
 ------ | ---- | -----------
-`settings` | Object | Object containing the attributes required by the underlying API: `room_name`, `location_name` and `value`.  Supported comfort values: too_hot | too_warm | bit_warm | comfortable | bit_cold | too_cold | freezing
+`settings` | Object | Object containing the attributes required by the underlying API: `room_name`, `location_name` and `value`.  Supported comfort values: too_hot , too_warm , bit_warm , comfortable , bit_cold , too_cold , freezing
 `cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
 
 **Usage example:**
