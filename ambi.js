@@ -141,4 +141,18 @@ Client.prototype.temperature = function (settings, cb) {
     return deferred.promise.nodeify(cb);
 }
 
+Client.prototype.sensor_temperature = function (settings, cb) {
+    var deferred = Q.defer();
+
+    this.send({
+        url: '/device/sensor/temperature',
+        qs: settings
+    }, function(err, data) {
+        if (err) deferred.reject(err);
+        else deferred.resolve(data);
+    });
+
+    return deferred.promise.nodeify(cb);
+}
+
 module.exports = Client;

@@ -255,3 +255,39 @@ Option | Type | Description
         location_name: 'Home',
         value: 24
     }).then(console.log, console.error);
+
+## Sensor Temperature
+Get latest sensor temperature data
+
+    client.sensor_temperature(settings, [cb])
+
+Option | Type | Description
+------ | ---- | -----------
+`settings` | Object | Object containing the attributes required by the underlying API: `room_name`, and `location_name`.
+`cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
+
+Returns an object with two attributes:
+* `created_on`: timestamp of last recorded temperature value
+* `value`: temperature is celsius
+
+**Usage example:**
+
+    //Using callbacks
+    client.sensor_temperature({
+            room_name: 'Bedroom',
+            location_name: 'Home'
+        },
+        function (err, data) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(data);
+        }
+    );
+
+    // Using promises
+    client.sensor_temperature({
+        room_name: 'Bedroom',
+        location_name: 'Home'
+    }).then(console.log, console.error);
