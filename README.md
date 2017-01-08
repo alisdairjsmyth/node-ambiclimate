@@ -291,3 +291,39 @@ Returns an object with two attributes:
         room_name: 'Bedroom',
         location_name: 'Home'
     }).then(console.log, console.error);
+
+## Sensor Humidity
+Get latest sensor humidity data
+
+    client.sensor_humidity(settings, [cb])
+
+Option | Type | Description
+------ | ---- | -----------
+`settings` | Object | Object containing the attributes required by the underlying API: `room_name`, and `location_name`.
+`cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
+
+Returns an object with two attributes:
+* `created_on`: timestamp of last recorded humdity value
+* `value`: last recorded relative humidity
+
+**Usage example:**
+
+    //Using callbacks
+    client.humidity({
+            room_name: 'Bedroom',
+            location_name: 'Home'
+        },
+        function (err, data) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(data);
+        }
+    );
+
+    // Using promises
+    client.sensor_humidity({
+        room_name: 'Bedroom',
+        location_name: 'Home'
+    }).then(console.log, console.error);
