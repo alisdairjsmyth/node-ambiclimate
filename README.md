@@ -19,7 +19,7 @@ This wrapper uses a client for network communication, which in turn handles all 
         client;
 
     client = new ac({
-        bearerToken: '<your api token'
+        bearerToken: '<your api token>'
     });
 
 ## Power Off
@@ -37,7 +37,7 @@ Option | Type | Description
     client.off({
             room_name: 'Bedroom',
             location_name: 'Home'
-        }
+        },
         function (err, data) {
             if (err) {
                 console.error(err);
