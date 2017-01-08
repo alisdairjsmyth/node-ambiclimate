@@ -153,3 +153,37 @@ Option | Type | Description
         location_name: 'Home',
         value: 27
     }).then(console.log, console.error);
+
+## Away Mode - Temperature Upper
+Enable Away mode on your AC to stay above target temperature
+
+    client.away_temperature_upper(settings, [cb])
+
+Option | Type | Description
+------ | ---- | -----------
+`settings` | Object | Object containing the attributes required by the underlying API: `room_name`, `location_name` and `value`.  Value represents the target temperature in celsius
+`cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
+
+**Usage example:**
+
+    //Using callbacks
+    client.away_temperature_upper({
+            room_name: 'Bedroom',
+            location_name: 'Home',
+            value: 22
+        },
+        function (err, data) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(data);
+        }
+    );
+
+    // Using promises
+    client.away_temperature_upper({
+        room_name: 'Bedroom',
+        location_name: 'Home',
+        value: 22
+    }).then(console.log, console.error);
