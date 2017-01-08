@@ -23,6 +23,7 @@ This wrapper uses a client for network communication, which in turn handles all 
     });
 
 ## Power Off
+Power off your AC
 
     client.off(settings, [cb])
 
@@ -54,8 +55,9 @@ Option | Type | Description
     }).then(console.log, console.error);
 
 ## Comfort Mode
+Enable Comfort mode on your AC
 
-    client.comfort_mode(settings, [cb])
+    client.comfort(settings, [cb])
 
 Option | Type | Description
 ------ | ---- | -----------
@@ -65,7 +67,7 @@ Option | Type | Description
 **Usage example:**
 
     //Using callbacks
-    client.comfort_mode({
+    client.comfort({
             room_name: 'Bedroom',
             location_name: 'Home'
         },
@@ -79,7 +81,41 @@ Option | Type | Description
     );
 
     // Using promises
-    client.comfort_mode({
+    client.comfort({
         room_name: 'Bedroom',
         location_name: 'Home'
+    }).then(console.log, console.error);
+
+## Comfort Mode Feedback
+Send feedback for Comfort mode
+
+    client.feedback(settings, [cb])
+
+Option | Type | Description
+------ | ---- | -----------
+`settings` | Object | Object containing the attributes required by the underlying API: `room_name`, `location_name` and `value`.  Supported comfort values: too_hot | too_warm | bit_warm | comfortable | bit_cold | too_cold | freezing
+`cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
+
+**Usage example:**
+
+    //Using callbacks
+    client.feedback({
+            room_name: 'Bedroom',
+            location_name: 'Home',
+            value: 'bit_warm'
+        },
+        function (err, data) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(data);
+        }
+    );
+
+    // Using promises
+    client.feedback({
+        room_name: 'Bedroom',
+        location_name: 'Home',
+        value: 'but_warm'
     }).then(console.log, console.error);

@@ -57,11 +57,25 @@ Client.prototype.off = function(settings, cb) {
     return deferred.promise.nodeify(cb);
 }
 
-Client.prototype.comfort_mode = function (settings, cb) {
+Client.prototype.comfort = function (settings, cb) {
     var deferred = Q.defer();
 
     this.send({
         url: '/device/mode/comfort',
+        qs: settings
+    }, function(err, data) {
+        if (err) deferred.reject(err);
+        else deferred.resolve(data);
+    });
+
+    return deferred.promise.nodeify(cb);
+}
+
+Client.prototype.feedback = function (settings, cb) {
+    var deferred = Q.defer();
+
+    this.send({
+        url: '/user/feedback',
         qs: settings
     }, function(err, data) {
         if (err) deferred.reject(err);
