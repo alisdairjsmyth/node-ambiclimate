@@ -221,3 +221,37 @@ Option | Type | Description
         location_name: 'Home',
         value: 70
     }).then(console.log, console.error);
+
+## Temperature Mode
+Enable Temperature mode on your AC
+
+    client.temperature(settings, [cb])
+
+Option | Type | Description
+------ | ---- | -----------
+`settings` | Object | Object containing the attributes required by the underlying API: `room_name`, `location_name` and `value`.  Value represents the target temperature in celsius
+`cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
+
+**Usage example:**
+
+    //Using callbacks
+    client.temperature({
+            room_name: 'Bedroom',
+            location_name: 'Home',
+            value: 24
+        },
+        function (err, data) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(data);
+        }
+    );
+
+    // Using promises
+    client.temperature({
+        room_name: 'Bedroom',
+        location_name: 'Home',
+        value: 24
+    }).then(console.log, console.error);
