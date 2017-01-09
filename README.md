@@ -309,7 +309,7 @@ Returns an object with two attributes:
 **Usage example:**
 
     //Using callbacks
-    client.humidity({
+    client.sensor_humidity({
             room_name: 'Bedroom',
             location_name: 'Home'
         },
