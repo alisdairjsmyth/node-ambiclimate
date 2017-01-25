@@ -334,5 +334,41 @@ Returns an array of objects with two attributes:
         location_name: 'Home'
     }).then(console.log, console.error);
 
+## Mode
+Get Ambi Climate's current working mode
+
+    client.mode(settings, [cb])
+
+Option | Type | Description
+------ | ---- | -----------
+`settings` | Object | Object containing the attributes required by the underlying API: `room_name`, and `location_name`.
+`cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
+
+Returns an array of objects with two attributes:
+* `mode`: Current mode
+* `value`: Value associated with mode
+
+**Usage example:**
+
+    //Using callbacks
+    client.mode({
+            room_name: 'Bedroom',
+            location_name: 'Home'
+        },
+        function (err, data) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(data);
+        }
+    );
+
+    // Using promises
+    client.mode({
+        room_name: 'Bedroom',
+        location_name: 'Home'
+    }).then(console.log, console.error);
+
 ## Acknowledgements
 Thanks to [gbrooker](https://github.com/gbrooker) for developing the OAUTH2 Client for the Ambi Climate API

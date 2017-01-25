@@ -167,4 +167,18 @@ Client.prototype.sensor_humidity = function (settings, cb) {
     return deferred.promise.nodeify(cb);
 }
 
+Client.prototype.mode = function (settings, cb) {
+    var deferred = Q.defer();
+
+    this.send({
+        url: '/device/mode',
+        qs: settings
+    }, function(err, data) {
+        if (err) deferred.reject(err);
+        else deferred.resolve(data);
+    });
+
+    return deferred.promise.nodeify(cb);
+}
+
 module.exports = Client;
