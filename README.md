@@ -1,5 +1,6 @@
 # node-ambiclimate
-[![npm version](https://badge.fury.io/js/node-ambiclimate.svg)](https://badge.fury.io/js/node-ambiclimate)
+[![NPM Version](https://img.shields.io/npm/v/node-ambiclimate.svg)](https://www.npmjs.com/package/node-ambiclimate)
+[![Dependency Status](https://img.shields.io/versioneye/d/nodejs/node-ambiclimate.svg)](https://www.versioneye.com/nodejs/node-ambiclimate/)
 
 A thin Node.js wrapper of the Ambi Climate HTTP API.
 
@@ -332,3 +333,6 @@ Returns an array of objects with two attributes:
         room_name: 'Bedroom',
         location_name: 'Home'
     }).then(console.log, console.error);
+
+## Acknowledgements
+Thanks to [gbrooker](https://github.com/gbrooker) for developing the OAUTH2 Client for the Ambi Climate API
