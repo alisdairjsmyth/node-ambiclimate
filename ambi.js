@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 function Client(clientId, clientSecret, username, password) {
     var ambiAuth = require('./ambi-auth');
-    
+
     this.settings = {
         baseUrl: 'https://api.ambiclimate.com/api/v1',
         bearerToken: null
@@ -30,8 +30,6 @@ Client.prototype.send = function(settings, cb) {
 
         settings = settings || {};
         settings = _.merge(defaults, settings);
-
-        console.log(JSON.stringify(settings));
 
         request(settings, function(err, response, body) {
             if (err) {
