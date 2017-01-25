@@ -1,5 +1,6 @@
 # node-ambiclimate
-[![npm version](https://badge.fury.io/js/node-ambiclimate.svg)](https://badge.fury.io/js/node-ambiclimate)
+[![NPM Version](https://img.shields.io/npm/v/node-ambiclimate.svg)](https://www.npmjs.com/package/node-ambiclimate)
+[![Dependency Status](https://img.shields.io/versioneye/d/nodejs/node-ambiclimate.svg)](https://www.versioneye.com/nodejs/node-ambiclimate/)
 
 A thin Node.js wrapper of the Ambi Climate HTTP API.
 
@@ -7,9 +8,9 @@ A thin Node.js wrapper of the Ambi Climate HTTP API.
 
     npm install node-ambiclimate --save
 
-## Bearer Token
+## OAuth Client
 
-A bearer token is mandatory to use the API.  A new token can be obtained in <a href="https://api.ambiclimate.com/" target="_new">Ambi Dev Portal</a> by following the steps on the Quick Start page.
+Register a OAuth Client in the <a href="https://api.ambiclimate.com/" target="_new">Ambi Dev Portal</a> by following the steps on the Quick Start page.  You require the Client Id and Client Secret of that client in order to use this wrapper.
 
 ## Usage
 
@@ -18,9 +19,14 @@ This wrapper uses a client for network communication, which in turn handles all 
     var ac = require('node-ambiclimate'),
         client;
 
-    client = new ac({
-        bearerToken: '<your api token>'
-    });
+    client = new ac(clientId, clientSecret, username, password);
+
+Option | Type | Description
+------ | ---- | -----------
+`clientId` | String | As per value on Ambi Dev Portal
+`clientSecret` | String | As per value on Ambi Dev Portal
+`username` | String | Ambi Climate User email
+`password` | String | Ambi Climate Password
 
 ## Power Off
 Power off your AC
@@ -266,7 +272,7 @@ Option | Type | Description
 `settings` | Object | Object containing the attributes required by the underlying API: `room_name`, and `location_name`.
 `cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
 
-Returns an object with two attributes:
+Returns an array of objects with two attributes:
 * `created_on`: timestamp of last recorded temperature value
 * `value`: temperature is celsius
 
@@ -302,8 +308,8 @@ Option | Type | Description
 `settings` | Object | Object containing the attributes required by the underlying API: `room_name`, and `location_name`.
 `cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
 
-Returns an object with two attributes:
-* `created_on`: timestamp of last recorded humdity value
+Returns an array of objects with two attributes:
+* `created_on`: timestamp of recorded humdity value
 * `value`: last recorded relative humidity
 
 **Usage example:**
@@ -327,3 +333,6 @@ Returns an object with two attributes:
         room_name: 'Bedroom',
         location_name: 'Home'
     }).then(console.log, console.error);
+
+## Acknowledgements
+Thanks to [gbrooker](https://github.com/gbrooker) for developing the OAUTH2 Client for the Ambi Climate API
