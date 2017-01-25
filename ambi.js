@@ -1,45 +1,45 @@
+'use strict';
 var request = require('request');
 var Q = require('q');
 var _ = require('lodash');
 
-function Client(settings) {
-    var defaults = {
+function Client(clientId, clientSecret, username, password) {
+    var ambiAuth = require('./ambi-auth');
+    
+    this.settings = {
         baseUrl: 'https://api.ambiclimate.com/api/v1',
         bearerToken: null
     };
-    settings = settings || {};
 
-    if (!settings.hasOwnProperty('bearerToken') || !settings.bearerToken.length) {
-        throw new Error('Authentication token is required to use the API');
-    }
-
-    this.settings = _.merge(defaults, settings);
+    this.auth = new ambiAuth(clientId, clientSecret, username, password);
 
     return this;
 }
 
 Client.prototype.send = function(settings, cb) {
-    var defaults = {
-        qs: {},
-        json: true,
-        method: 'GET',
-        baseUrl: this.settings.baseUrl,
-        auth: {
-            'bearer': this.settings.bearerToken
+    this.auth.getToken( (token) => {
+        var defaults = {
+            qs: {},
+            json: true,
+            method: 'GET',
+            baseUrl: this.settings.baseUrl,
+            auth: {
+                'bearer': token
+            }
         }
-    }
 
-    settings = settings || {};
-    settings = _.merge(defaults, settings);
+        settings = settings || {};
+        settings = _.merge(defaults, settings);
 
-    console.log(JSON.stringify(settings));
+        console.log(JSON.stringify(settings));
 
-    request(settings, function(err, response, body) {
-        if (err) {
-            cb(err, null);
-            return;
-        }
-        cb(null, body);
+        request(settings, function(err, response, body) {
+            if (err) {
+                cb(err, null);
+                return;
+            }
+            cb(null, body);
+        });
     });
 }
 
