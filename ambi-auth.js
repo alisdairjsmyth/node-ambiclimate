@@ -5,7 +5,7 @@ var url = require('url');
 
 
 class AmbiAuthorizationCode {
-    
+
     // Requires from https://api.ambiclimate.com/
     //
     // Client ID
@@ -20,22 +20,6 @@ class AmbiAuthorizationCode {
     //         console.log(token);
     //      });
     //
-    // OR create an ambi client
-    //
-    // AmbiAuthorizationCode.createClient('id', 'secret', 'user@mail.com', 'pass', (client) => {
-    //          var settings = {
-    //              room_name: 'Living Room',
-    //              location_name: 'Home'
-    //          };
-    //
-    //          client.sensor_temperature(settings, function (err, data) {
-    //                  console.log('T:'+data[0].value);
-    //              });
-    //    });
-    //
-
-
-
 
     constructor(clientid, clientsecret, username, password) {
         const credentials = {
@@ -51,15 +35,15 @@ class AmbiAuthorizationCode {
         http: {
             headers: { 'Accept': 'application/json' }
         }};
-        
+
         this._oauth2 = simpleoauth2.create(credentials);
-        
+
         this.auth = this.authenticate(username, password);
     }
-    
+
     // Obtains the token once, caches, and refreshes if it has expired
     // callback(token):
-    
+
     getToken(callback) {
         this.promiseToGetToken()
         .then((token) => {
@@ -67,7 +51,7 @@ class AmbiAuthorizationCode {
         })
     }
 
-    
+
     promiseToGetToken() {
         return this.auth.then((token) => {
             if (token.expired()) {
@@ -75,103 +59,101 @@ class AmbiAuthorizationCode {
             }
                 return token;
         })
-        
+
     }
 
     // Authentication
     //
-    
+
     authenticate(username, password) {
         this.auth = this.authenticate_auth_code_flow(username, password);
         return this.auth;
     };
-    
+
     // Authentiate using OAuth2 authorization code flow
-    
+
     authenticate_auth_code_flow(username, password) {
-        
+
         const authorizationUri = this._oauth2.authorizationCode.authorizeURL({
              scope: 'email device_read ac_control',
              });
-        
+
         const promiseToRequest = AmbiAuthorizationCode.promiseToRequest;
         const oauth2 = this._oauth2;
-        
+
         // Need to retain a cookie during login process
-        
+
         var j = request.jar();
-        
+
         // First initiate an authorization request for this APP
-        
+
         return promiseToRequest(authorizationUri)
         .then(function(response) {
-              
+
               var loginRequest = {
                   url: 'https://api.ambiclimate.com/login',
                   method: 'POST',
                   jar: j,
                   form: {email: username, password: password}
               }
-              
+
               // Then login to the ambiclimate API with the username and password
-              
+
               return promiseToRequest(loginRequest);
             })
-        
+
         .then(function(response) {
-              
-              
+
+
               var authRequest = {
                   uri: authorizationUri,
                   method: 'POST',
                   form: {confirm: 'yes'},
                   jar: j,
               }
-              
+
               // Then confirm the user allows this app to access their ambiclimate units
               // which returns an authorization code
-              
+
               return promiseToRequest(authRequest);
             })
-        
-        
+
+
         .then(function(response) {
-              
+
               var code = url.parse(response.headers.location, true).query.code;
-              
+
               // Get the access token object (the authorization code is given from the previous step).
               const tokenConfig = {
                   code: code,
                   redirect_uri: 'https://httpbin.org/get'
               };
-              
+
               // Save the access token
-              
+
               return oauth2.authorizationCode.getToken(tokenConfig)
             })
-        
+
         .then((result) => {
 
               const token = oauth2.accessToken.create(result);
               return token;
-              
+
             })
-        
+
         .catch((error) => {
                console.log(error)
                console.log('Access Token Error', error.message);
                return nil
                });
     };
-    
-    
-    
+
     // Create a promise to access a URL with associated options and headers
     // a status 200 or 302 will resolve the response
     // any other status will cause a rejection
-    
+
     static promiseToRequest(options) {
-        
+
         return new Promise(function(resolve, reject) {
            request(options, function (error, response, body) {
                if (!error && (response.statusCode == 200 || response.statusCode == 302)) {
@@ -182,27 +164,7 @@ class AmbiAuthorizationCode {
            })
        })
     };
-    
-    // Create an ambiclimate client and return to the callback
-    
-    static createClient(clientid, clientsecret, username, password, callback) {
-        
-        this.api = new AmbiAuthorizationCode(client_id, client_secret, username, password);
-        
-        api.promiseToGetToken()
-        .then((token) => {
-            var ac = require('node-ambiclimate');
-            var client;
-        
-            client = new ac({ bearerToken: accessory.bearerToken});
-              
-              callback(client);
-          })
-
-    }
 
 }
 
 module.exports = AmbiAuthorizationCode;
-
-
