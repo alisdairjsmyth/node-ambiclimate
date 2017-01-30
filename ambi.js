@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 function Client(clientId, clientSecret, username, password) {
     var ambiAuth = require('./ambi-auth');
-    
+
     this.settings = {
         baseUrl: 'https://api.ambiclimate.com/api/v1',
         bearerToken: null
@@ -30,8 +30,6 @@ Client.prototype.send = function(settings, cb) {
 
         settings = settings || {};
         settings = _.merge(defaults, settings);
-
-        console.log(JSON.stringify(settings));
 
         request(settings, function(err, response, body) {
             if (err) {
@@ -160,6 +158,20 @@ Client.prototype.sensor_humidity = function (settings, cb) {
 
     this.send({
         url: '/device/sensor/humidity',
+        qs: settings
+    }, function(err, data) {
+        if (err) deferred.reject(err);
+        else deferred.resolve(data);
+    });
+
+    return deferred.promise.nodeify(cb);
+}
+
+Client.prototype.mode = function (settings, cb) {
+    var deferred = Q.defer();
+
+    this.send({
+        url: '/device/mode',
         qs: settings
     }, function(err, data) {
         if (err) deferred.reject(err);
