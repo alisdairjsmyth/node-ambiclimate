@@ -18,7 +18,7 @@
   "main": "./ambi",
   "dependencies": {
     "lodash": "4.17.x",
-    "q": "1.4.x",
+    "q": "^1.4.x",
     "request": "^2.79.x",
     "simple-oauth2": "^1.0.3",
     "url": "^0.11.0"
