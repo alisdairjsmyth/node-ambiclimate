@@ -59,6 +59,11 @@ Client.prototype.send = function(settings, cb) {
                 cb(err, null);
                 return;
             }
+            // Compensation for issue with underlying API always returning success
+            if (body.reason) {
+              cb(body, null)
+              return;
+            }
             cb(null, body);
         });
     });
