@@ -1,6 +1,6 @@
 {
   "name": "node-ambiclimate",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Thin wrapper around the Ambi Climate HTTP API",
   "author": {
     "name": "Alisdair Smyth",
