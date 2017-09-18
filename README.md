@@ -370,5 +370,54 @@ Returns an array of objects with two attributes:
         location_name: 'Home'
     }).then(console.log, console.error);
 
+## Appliance States
+Get Ambi Climate's last N appliance states
+
+    client.appliance_states(settings, [cb])
+
+Option | Type | Description
+------ | ---- | -----------
+`settings` | Object | Object containing the attributes required by the underlying API: `room_name`, `location_name`, `limit` and `offset`. Limit controls the number of states to be returned, and offset shifts the results by a number of slots.
+`cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
+
+Returns an object with several parts:
+* `paging`: Object with two attributes
+  * `limit`: Reflects the input parameter of the same name
+  * `offset`: Reflects the input parameter of the same name
+* `value`: Value associated with mode
+  * `data`: Array of state objects, where each state object has the following attributes:
+    * `created_on`: A timestamp of the reading
+    * `fan`: The operational fan state
+    * `mode`: Ambi Climate mode
+    * `swing`: The operational swing state
+    * `temperature`: The recorded temperature
+* `err`: Error message
+
+**Usage example:**
+
+    //Using callbacks
+    client.appliance_states({
+            room_name: 'Bedroom',
+            location_name: 'Home',
+            limit: 5,
+            offset: 0
+        },
+        function (err, data) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(data);
+        }
+    );
+
+    // Using promises
+    client.appliance_states({
+        room_name: 'Bedroom',
+        location_name: 'Home',
+        limit: 5,
+        offset: 0
+    }).then(console.log, console.error);
+
 ## Acknowledgements
 Thanks to [gbrooker](https://github.com/gbrooker) for developing the OAUTH2 Client for the Ambi Climate API
