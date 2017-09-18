@@ -215,10 +215,23 @@ Client.prototype.appliance_states = function (settings, cb) {
   // Default limit and offset
   settings.limit  = (settings.limit)  ? settings.limit  : 5;
   settings.offset = (settings.offset) ? settings.offset : 0;
-  
+
   this.send({
     url: '/device/appliance_states',
     qs: settings
+  }, function(err, data) {
+    if (err) deferred.reject(err);
+    else deferred.resolve(data);
+  });
+
+  return deferred.promise.nodeify(cb);
+}
+
+Client.prototype.devices = function (cb) {
+  var deferred = Q.defer();
+
+  this.send({
+    url: '/devices'
   }, function(err, data) {
     if (err) deferred.reject(err);
     else deferred.resolve(data);

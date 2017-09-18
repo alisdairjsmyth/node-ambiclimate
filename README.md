@@ -384,13 +384,12 @@ Returns an object with several parts:
 * `paging`: Object with two attributes
   * `limit`: Reflects the input parameter of the same name
   * `offset`: Reflects the input parameter of the same name
-* `value`: Value associated with mode
-  * `data`: Array of state objects, where each state object has the following attributes:
-    * `created_on`: A timestamp of the reading
-    * `fan`: The operational fan state
-    * `mode`: Ambi Climate mode
-    * `swing`: The operational swing state
-    * `temperature`: The recorded temperature
+* `data`: Array of state objects, where each state object has the following attributes:
+  * `created_on`: A timestamp of the reading
+  * `fan`: The operational fan state
+  * `mode`: Ambi Climate mode
+  * `swing`: The operational swing state
+  * `temperature`: The recorded temperature
 * `err`: Error message
 
 **Usage example:**
@@ -418,6 +417,38 @@ Returns an object with several parts:
         limit: 5,
         offset: 0
     }).then(console.log, console.error);
+
+## Devices
+Get users Ambi Climate device information
+
+    client.devices([cb])
+
+Option | Type | Description
+------ | ---- | -----------
+`cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
+
+Returns an object with several parts:
+* `data`: Array of device objects, where each device object has the following attributes:
+  * `device_id`: Internal identifier for the device
+  * `room_name`
+  * `location_name`
+* `err`: Error message
+
+**Usage example:**
+
+    //Using callbacks
+    client.devices(
+        function (err, data) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(data);
+        }
+    );
+
+    // Using promises
+    client.devices().then(console.log, console.error);
 
 ## Acknowledgements
 Thanks to [gbrooker](https://github.com/gbrooker) for developing the OAUTH2 Client for the Ambi Climate API
