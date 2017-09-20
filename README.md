@@ -386,9 +386,9 @@ Returns an object with several parts:
   * `offset`: Reflects the input parameter of the same name
 * `data`: Array of state objects, where each state object has the following attributes:
   * `created_on`: A timestamp of the reading
-  * `fan`: The operational fan state
-  * `mode`: Ambi Climate mode
-  * `swing`: The operational swing state
+  * `mode`: Air conditioner mode (Fan, Dry, Heat, Auto, Cool)
+  * `swing`: The operational swing state (Oscillate, Off)
+  * `fan`: The operational fan state (Auto, High, Med-High, Med, Med-low, Low, Quiet)
   * `temperature`: The recorded temperature
 * `err`: Error message
 
