@@ -451,5 +451,60 @@ Returns an object with several parts:
     // Using promises
     client.devices().then(console.log, console.error);
 
+## IR Feature
+Get Ambi Climate's appliance IR feature - it returns list of values rather than current state
+
+    client.ir_feature(settings, [cb])
+
+Option | Type | Description
+------ | ---- | -----------
+`settings` | Object | Object containing the attributes required by the underlying API: `room_name`, and `location_name`
+`cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
+
+Returns an object with several parts:
+* `paging`: Null
+* `data`: Multi-layer object reflect current IR settings:
+  * `auto`: Object
+    * `fan`:
+      * `ftype`: Static value of select_option
+      * `value`: Array of values (auto, high, med-high, med, med-low, low, quiet)
+    * `louver`:
+      * `ftype`: Static value of select_option
+      * `value`: Array of values (oscillate, off)
+    * `swing`:
+      * `ftype`: Static value of select_option
+      * `value`: Array of values (oscillate, off)
+    * `temperature`:
+      * `ftype`: Static value of select_option
+      * `value`: Array of values (18 through to 30)
+  * `cool`: As per `auto`
+  * `dry`: As per `auto`
+  * `fan`: As per `auto`
+  * `heat`: As per auto
+* `err`: Error message
+
+**Usage example:**
+
+    //Using callbacks
+    client.ir_feature({
+            room_name: 'Bedroom',
+            location_name: 'Home'
+        },
+        function (err, data) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(data);
+        }
+    );
+
+    // Using promises
+    client.devices({
+            room_name: 'Bedroom',
+            location_name: 'Home'
+        })
+        .then(console.log, console.error);
+
 ## Acknowledgements
 Thanks to [gbrooker](https://github.com/gbrooker) for developing the OAUTH2 Client for the Ambi Climate API
