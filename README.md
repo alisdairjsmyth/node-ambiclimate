@@ -41,23 +41,24 @@ Option | Type | Description
 **Usage example:**
 
     //Using callbacks
-    client.off({
-            room_name: 'Bedroom',
-            location_name: 'Home'
-        },
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
+    client.off(
+      {
+        room_name: 'Bedroom',
+        location_name: 'Home'
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
         }
+        console.log(data);
+      }
     );
 
     // Using promises
     client.off({
-        room_name: 'Bedroom',
-        location_name: 'Home'
+      room_name: 'Bedroom',
+      location_name: 'Home'
     }).then(console.log, console.error);
 
 ## Comfort Mode
@@ -73,23 +74,24 @@ Option | Type | Description
 **Usage example:**
 
     //Using callbacks
-    client.comfort({
-            room_name: 'Bedroom',
-            location_name: 'Home'
-        },
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
+    client.comfort(
+      {
+        room_name: 'Bedroom',
+        location_name: 'Home'
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
         }
+        console.log(data);
+      }
     );
 
     // Using promises
     client.comfort({
-        room_name: 'Bedroom',
-        location_name: 'Home'
+      room_name: 'Bedroom',
+      location_name: 'Home'
     }).then(console.log, console.error);
 
 ## Comfort Mode Feedback
@@ -105,25 +107,26 @@ Option | Type | Description
 **Usage example:**
 
     //Using callbacks
-    client.feedback({
-            room_name: 'Bedroom',
-            location_name: 'Home',
-            value: 'bit_warm'
-        },
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
+    client.feedback(
+      {
+        room_name: 'Bedroom',
+        location_name: 'Home',
+        value: 'bit_warm'
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
         }
+        console.log(data);
+      }
     );
 
     // Using promises
     client.feedback({
-        room_name: 'Bedroom',
-        location_name: 'Home',
-        value: 'but_warm'
+      room_name: 'Bedroom',
+      location_name: 'Home',
+      value: 'but_warm'
     }).then(console.log, console.error);
 
 ## Away Mode - Temperature Lower
@@ -139,25 +142,26 @@ Option | Type | Description
 **Usage example:**
 
     //Using callbacks
-    client.away_temperature_lower({
-            room_name: 'Bedroom',
-            location_name: 'Home',
-            value: 27
-        },
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
+    client.away_temperature_lower(
+      {
+        room_name: 'Bedroom',
+        location_name: 'Home',
+        value: 27
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
         }
+        console.log(data);
+      }
     );
 
     // Using promises
     client.away_temperature_lower({
-        room_name: 'Bedroom',
-        location_name: 'Home',
-        value: 27
+      room_name: 'Bedroom',
+      location_name: 'Home',
+      value: 27
     }).then(console.log, console.error);
 
 ## Away Mode - Temperature Upper
@@ -173,25 +177,26 @@ Option | Type | Description
 **Usage example:**
 
     //Using callbacks
-    client.away_temperature_upper({
-            room_name: 'Bedroom',
-            location_name: 'Home',
-            value: 22
-        },
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
+    client.away_temperature_upper(
+      {
+        room_name: 'Bedroom',
+        location_name: 'Home',
+        value: 22
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
         }
+        console.log(data);
+      }
     );
 
     // Using promises
     client.away_temperature_upper({
-        room_name: 'Bedroom',
-        location_name: 'Home',
-        value: 22
+      room_name: 'Bedroom',
+      location_name: 'Home',
+      value: 22
     }).then(console.log, console.error);
 
 ## Away Mode - Humidity Upper
@@ -207,25 +212,26 @@ Option | Type | Description
 **Usage example:**
 
     //Using callbacks
-    client.away_humidity_upper({
-            room_name: 'Bedroom',
-            location_name: 'Home',
-            value: 70
-        },
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
+    client.away_humidity_upper(
+      {
+        room_name: 'Bedroom',
+        location_name: 'Home',
+        value: 70
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
         }
+        console.log(data);
+      }
     );
 
     // Using promises
     client.away_humidity_upper({
-        room_name: 'Bedroom',
-        location_name: 'Home',
-        value: 70
+      room_name: 'Bedroom',
+      location_name: 'Home',
+      value: 70
     }).then(console.log, console.error);
 
 ## Temperature Mode
@@ -241,25 +247,26 @@ Option | Type | Description
 **Usage example:**
 
     //Using callbacks
-    client.temperature({
-            room_name: 'Bedroom',
-            location_name: 'Home',
-            value: 24
-        },
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
+    client.temperature(
+      {
+        room_name: 'Bedroom',
+        location_name: 'Home',
+        value: 24
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
         }
+        console.log(data);
+      }
     );
 
     // Using promises
     client.temperature({
-        room_name: 'Bedroom',
-        location_name: 'Home',
-        value: 24
+      room_name: 'Bedroom',
+      location_name: 'Home',
+      value: 24
     }).then(console.log, console.error);
 
 ## Sensor Temperature
@@ -279,23 +286,24 @@ Returns an array of objects with two attributes:
 **Usage example:**
 
     //Using callbacks
-    client.sensor_temperature({
-            room_name: 'Bedroom',
-            location_name: 'Home'
-        },
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
+    client.sensor_temperature(
+      {
+        room_name: 'Bedroom',
+        location_name: 'Home'
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
         }
+        console.log(data);
+      }
     );
 
     // Using promises
     client.sensor_temperature({
-        room_name: 'Bedroom',
-        location_name: 'Home'
+      room_name: 'Bedroom',
+      location_name: 'Home'
     }).then(console.log, console.error);
 
 ## Sensor Humidity
@@ -315,23 +323,24 @@ Returns an array of objects with two attributes:
 **Usage example:**
 
     //Using callbacks
-    client.sensor_humidity({
-            room_name: 'Bedroom',
-            location_name: 'Home'
-        },
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
+    client.sensor_humidity(
+      {
+        room_name: 'Bedroom',
+        location_name: 'Home'
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
         }
+        console.log(data);
+      }
     );
 
     // Using promises
     client.sensor_humidity({
-        room_name: 'Bedroom',
-        location_name: 'Home'
+      room_name: 'Bedroom',
+      location_name: 'Home'
     }).then(console.log, console.error);
 
 ## Mode
@@ -351,23 +360,24 @@ Returns an array of objects with two attributes:
 **Usage example:**
 
     //Using callbacks
-    client.mode({
-            room_name: 'Bedroom',
-            location_name: 'Home'
-        },
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
+    client.mode(
+      {
+        room_name: 'Bedroom',
+        location_name: 'Home'
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
         }
+        console.log(data);
+      }
     );
 
     // Using promises
     client.mode({
-        room_name: 'Bedroom',
-        location_name: 'Home'
+      room_name: 'Bedroom',
+      location_name: 'Home'
     }).then(console.log, console.error);
 
 ## Appliance States
@@ -396,27 +406,28 @@ Returns an object with several parts:
 **Usage example:**
 
     //Using callbacks
-    client.appliance_states({
-            room_name: 'Bedroom',
-            location_name: 'Home',
-            limit: 5,
-            offset: 0
-        },
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
-        }
-    );
-
-    // Using promises
-    client.appliance_states({
+    client.appliance_states(
+      {
         room_name: 'Bedroom',
         location_name: 'Home',
         limit: 5,
         offset: 0
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        console.log(data);
+      }
+    );
+
+    // Using promises
+    client.appliance_states({
+      room_name: 'Bedroom',
+      location_name: 'Home',
+      limit: 5,
+      offset: 0
     }).then(console.log, console.error);
 
 ## Devices
@@ -439,13 +450,13 @@ Returns an object with several parts:
 
     //Using callbacks
     client.devices(
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
         }
+        console.log(data);
+      }
     );
 
     // Using promises
@@ -486,25 +497,25 @@ Returns an object with several parts:
 **Usage example:**
 
     //Using callbacks
-    client.ir_feature({
-            room_name: 'Bedroom',
-            location_name: 'Home'
-        },
-        function (err, data) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
+    client.ir_feature(
+      {
+        room_name: 'Bedroom',
+        location_name: 'Home'
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
         }
+        console.log(data);
+      }
     );
 
     // Using promises
     client.devices({
-            room_name: 'Bedroom',
-            location_name: 'Home'
-        })
-        .then(console.log, console.error);
+      room_name: 'Bedroom',
+      location_name: 'Home'
+    }).then(console.log, console.error);
 
 ## Deployment
 Create deployment for appliance with Ambi Climate
@@ -524,24 +535,26 @@ Returns an object with several parts:
 **Usage example:**
 
     //Using callbacks
-    client.deployment({
-      room_name: 'Bedroom',
-      location_name: 'Home',
-      mode: 'cool',
-      power: 'on',
+    client.deployment(
       {
-        temperature: 18,
-        fan: 'med',
-        louver, 'off'
+        room_name: 'Bedroom',
+        location_name: 'Home',
+        mode: 'cool',
+        power: 'on',
+        {
+          temperature: 18,
+          fan: 'med',
+          louver, 'off'
+        }
+      },
+      function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        console.log(data);
       }
-    },
-    function (err, data) {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.log(data);
-    });
+    );
 
     // Using promises
     client.devices({
