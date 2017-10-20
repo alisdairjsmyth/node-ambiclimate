@@ -391,7 +391,7 @@ Returns an object with several parts:
   * `swing`: The operational swing state (Oscillate, Off)
   * `fan`: The operational fan state (Auto, High, Med-High, Med, Med-low, Low, Quiet)
   * `temperature`: The recorded temperature
-* `err`: Error message
+* `error`: Error message
 
 **Usage example:**
 
@@ -433,7 +433,7 @@ Returns an object with several parts:
   * `device_id`: Internal identifier for the device
   * `room_name`
   * `location_name`
-* `err`: Error message
+* `error`: Error message
 
 **Usage example:**
 
@@ -481,7 +481,7 @@ Returns an object with several parts:
   * `dry`: As per `auto`
   * `fan`: As per `auto`
   * `heat`: As per auto
-* `err`: Error message
+* `error`: Error message
 
 **Usage example:**
 
@@ -505,6 +505,50 @@ Returns an object with several parts:
             location_name: 'Home'
         })
         .then(console.log, console.error);
+
+## Deployment
+Create deployment for appliance with Ambi Climate
+
+    client.deployment(settings, [cb])
+
+Option | Type | Description
+------ | ---- | -----------
+`settings` | Object | Object containing the attributes required by the underlying API: `room_name`, `location_name`, `mode`, `power`, and `feature`.  `feature` is object with the following attributes `temperature`, `fan` and `louver`.
+`cb` | function | `function(err, data) {}` Callback function which will be called when the HTTP request to the API is processed
+
+Returns an object with several parts:
+* `paging`: Null
+* `data`: String
+* `error`: Error message
+
+**Usage example:**
+
+    //Using callbacks
+    client.deployment({
+      room_name: 'Bedroom',
+      location_name: 'Home',
+      mode: 'cool',
+      power: 'on',
+      {
+        temperature: 18,
+        fan: 'med',
+        louver, 'off'
+      }
+    },
+    function (err, data) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log(data);
+    });
+
+    // Using promises
+    client.devices({
+      room_name: 'Bedroom',
+      location_name: 'Home'
+    })
+    .then(console.log, console.error);
 
 ## Acknowledgements
 Thanks to [gbrooker](https://github.com/gbrooker) for developing the OAUTH2 Client for the Ambi Climate API
