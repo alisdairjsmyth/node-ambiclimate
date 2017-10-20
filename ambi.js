@@ -240,7 +240,7 @@ Client.prototype.devices = function (cb) {
   return deferred.promise.nodeify(cb);
 }
 
-Client.prototype.ir_feature = function (cb) {
+Client.prototype.ir_feature = function (settings, cb) {
   var deferred = Q.defer();
 
   this.send({
