@@ -300,10 +300,11 @@ Client.prototype.ir_feature = function(settings, cb) {
 Client.prototype.deployment = function(settings, cb) {
   var deferred = Q.defer();
 
-  settings.method = "POST";
   this.send(
     {
-      url: "/device/deployments"
+      url: "/device/deployments",
+      method: "POST",
+      body: settings
     },
     function(err, data) {
       if (err) deferred.reject(err);
