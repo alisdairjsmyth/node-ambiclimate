@@ -64,6 +64,11 @@ Client.prototype.send = function(settings, cb) {
         cb(body, null);
         return;
       }
+      // Check for error message for some API endpoints
+      if (body.error) {
+        cb(body.error, null);
+        return;
+      }
       cb(null, body);
     });
   });
@@ -295,10 +300,11 @@ Client.prototype.ir_feature = function(settings, cb) {
 Client.prototype.deployment = function(settings, cb) {
   var deferred = Q.defer();
 
-  settings.method = "POST";
   this.send(
     {
-      url: "/device/deployment"
+      url: "/device/deployments",
+      method: "POST",
+      body: settings
     },
     function(err, data) {
       if (err) deferred.reject(err);
