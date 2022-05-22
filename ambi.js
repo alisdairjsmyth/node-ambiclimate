@@ -298,7 +298,7 @@ Client.prototype.deployment = function(settings, cb) {
   settings.method = "POST";
   this.send(
     {
-      url: "/device/deployment"
+      url: "/device/deployments"
     },
     function(err, data) {
       if (err) deferred.reject(err);
