@@ -64,6 +64,11 @@ Client.prototype.send = function(settings, cb) {
         cb(body, null);
         return;
       }
+      // Check for error message for some API endpoints
+      if (body.error) {
+        cb(body.error, null);
+        return;
+      }
       cb(null, body);
     });
   });
